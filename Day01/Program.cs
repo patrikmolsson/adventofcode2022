@@ -1,9 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+using System.Globalization;
 
 PartOne();
 PartTwo();
@@ -48,12 +45,10 @@ void PartTwo()
 
 internal class Elf
 {
-    public void AddFoodItem(string foodItem)
-    {
-        FoodItemsCaloryCount.Add(int.Parse(foodItem));
-    }
+    public void AddFoodItem(string foodItem) =>
+        this.FoodItemsCaloryCount.Add(int.Parse(foodItem, NumberStyles.Integer, CultureInfo.InvariantCulture));
 
     private IList<int> FoodItemsCaloryCount { get; } = new List<int>();
 
-    public int TotalAmountOfCalories => FoodItemsCaloryCount.Sum();
+    public int TotalAmountOfCalories => this.FoodItemsCaloryCount.Sum();
 }
